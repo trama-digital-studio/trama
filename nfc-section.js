@@ -74,6 +74,11 @@
   var languageMap = { CA: "ca", ES: "es", EN: "en" };
   var currentLanguage = "en";
 
+  function getActiveLanguage() {
+    var activeButton = document.querySelector('button[aria-pressed="true"]');
+    return activeButton ? languageMap[activeButton.textContent.trim()] || null : null;
+  }
+
   function setText(selector, value) {
     var element = document.querySelector(selector);
     if (element) element.textContent = value;
@@ -138,7 +143,7 @@
       button.dataset.nfcLanguageBound = "true";
       button.addEventListener("click", function () {
         window.setTimeout(function () {
-          applyLanguage(language);
+          applyLanguage(getActiveLanguage() || language);
           bindCards();
         }, 0);
       });
@@ -146,12 +151,15 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    currentLanguage = getActiveLanguage() || currentLanguage;
     applyLanguage(currentLanguage);
     bindCards();
     bindLanguageButtons();
     new MutationObserver(function () {
       bindCards();
       bindLanguageButtons();
-    }).observe(document.body, { childList: true, subtree: true });
+      var activeLanguage = getActiveLanguage();
+      if (activeLanguage && activeLanguage !== currentLanguage) applyLanguage(activeLanguage);
+    }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ["aria-pressed"] });
   });
 })();
