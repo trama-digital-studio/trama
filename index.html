@@ -130,8 +130,10 @@ Error generating stack: `+l.message+`
   .trama-nfc-product-copy{border-left:1px solid #bbff35;padding-left:1.5rem}
   .trama-nfc-product-copy p{max-width:36rem;color:#aeb2bd;font-size:1.02rem;line-height:1.6;margin:.75rem 0 0}
   .trama-nfc-signal{display:flex;align-items:center;gap:.7rem;margin-top:2.2rem;color:#7e8490;font:500 .62rem/1 "IBM Plex Mono",monospace;letter-spacing:.08em}.trama-nfc-signal span:first-child{color:#bbff35}.trama-nfc-signal i{width:2.8rem;height:1px;background:#bbff35;display:block}
+  .trama-nfc-bottom{display:flex;justify-content:space-between;gap:2rem;align-items:center;border-top:1px solid #252a34;padding-top:1.25rem;color:#8d93a0;font:500 .68rem/1.4 "IBM Plex Mono",monospace;letter-spacing:.04em}.trama-nfc-note{color:#bbff35;text-align:right}
+  .trama-nfc-detail{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.5rem 2rem;align-items:end;margin-top:1.25rem;padding:1.35rem 1.5rem;border:1px solid #39402b;background:linear-gradient(105deg,#141a15,#0d1015 65%);opacity:0;max-height:0;overflow:hidden;transform:translateY(-8px);transition:opacity .35s ease,max-height .45s ease,transform .35s ease}.trama-nfc-detail.is-visible{opacity:1;max-height:15rem;transform:translateY(0)}.trama-nfc-detail-kicker{grid-column:1/-1;color:#bbff35;font:500 .62rem/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase}.trama-nfc-detail h3{margin:0;color:#f5f4ee;font:500 clamp(1.5rem,3vw,2.6rem)/.95 "DM Serif Display",Georgia,serif}.trama-nfc-detail p{max-width:40rem;margin:.6rem 0 0;color:#aeb2bd;font-size:.92rem;line-height:1.55}.trama-nfc-detail a{display:inline-flex;align-items:center;gap:.75rem;color:#0a0c0f;background:#bbff35;padding:.8rem 1rem;text-decoration:none;font:700 .7rem/1 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}.trama-nfc-detail a:after{content:"↗";font-size:1rem}
   @media(max-width:900px){.trama-nfc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-  @media(max-width:560px){#serveis-nfc{padding:4.5rem 1.25rem}.trama-nfc-heading{font-size:clamp(3.1rem,16vw,5.6rem)}.trama-nfc-product{grid-template-columns:1fr;margin:2.4rem 0 3rem;gap:1.5rem}.trama-nfc-stage{min-height:360px}.trama-nfc-product figure{max-width:220px}.trama-nfc-product-copy{border-left:0;border-top:1px solid #bbff35;padding:1rem 0 0}.trama-nfc-grid{grid-template-columns:1fr;margin-top:2.5rem}.trama-nfc-card{min-height:260px}.trama-nfc-bottom{align-items:flex-start;flex-direction:column}.trama-nfc-note{text-align:left}}
+  @media(max-width:560px){#serveis-nfc{padding:4.5rem 1.25rem}.trama-nfc-heading{font-size:clamp(3.1rem,16vw,5.6rem)}.trama-nfc-product{grid-template-columns:1fr;margin:2.4rem 0 3rem;gap:1.5rem}.trama-nfc-stage{min-height:360px}.trama-nfc-product figure{max-width:220px}.trama-nfc-product-copy{border-left:0;border-top:1px solid #bbff35;padding:1rem 0 0}.trama-nfc-grid{grid-template-columns:1fr;margin-top:2.5rem}.trama-nfc-card{min-height:260px}.trama-nfc-bottom{align-items:flex-start;flex-direction:column}.trama-nfc-note{text-align:left}.trama-nfc-detail{grid-template-columns:1fr;padding:1.25rem}.trama-nfc-detail a{justify-self:start}}
 </style>
 <section id="serveis-nfc" aria-labelledby="serveis-nfc-title">
   <div class="trama-nfc-wrap">
@@ -157,6 +159,11 @@ Error generating stack: `+l.message+`
       </button>
     </div>
     <div class="trama-nfc-bottom"><span>Un sistema físic amb un destí digital editable.</span><span id="nfc-note" class="trama-nfc-note" aria-live="polite">Selecciona una targeta per veure un exemple →</span></div>
+    <div id="nfc-detail" class="trama-nfc-detail" aria-live="polite" aria-hidden="true">
+      <span class="trama-nfc-detail-kicker">01 / Exemple configurable</span>
+      <div><h3 id="nfc-detail-title">Reviews de Google</h3><p id="nfc-detail-copy">El client toca la targeta i arriba directament al formulari de valoració.</p></div>
+      <a id="nfc-detail-cta" href="#contacte">Parlem d’aquesta opció</a>
+    </div>
   </div>
 </section>
 <script src="nfc-section.js?v=20260831-i18n" defer></script>

@@ -21,6 +21,12 @@
         ["02 · Informació", "Carta digital", "Una aproximació obre la carta, els serveis o una landing actualitzada sense QR ni cerques.", "Carta digital"],
         ["03 · Connexió", "Wi-Fi fàcil", "Comparteix l’accés a la xarxa amb menys fricció i una experiència més cuidada per al client.", "Wi-Fi del negoci"],
         ["04 · Conversió", "Promocions", "Canvia el destí quan vulguis: cupó, reserva, fidelització, xarxes o qualsevol campanya.", "Campanya activa"]
+      ],
+      details: [
+        ["01 / Exemple configurable", "Reviews de Google", "El client toca la targeta i arriba directament al formulari de valoració del negoci, sense buscar-lo.", "Parlem d’aquesta opció"],
+        ["02 / Exemple configurable", "Carta digital", "La carta s’obre al mòbil i es pot actualitzar sense reimprimir res ni canviar la targeta.", "Parlem d’aquesta opció"],
+        ["03 / Exemple configurable", "Wi-Fi fàcil", "Un toc comparteix l’accés a la xarxa i deixa l’equip lliure per atendre el client.", "Parlem d’aquesta opció"],
+        ["04 / Exemple configurable", "Promoció activa", "El mateix suport pot portar a un cupó, una reserva o una campanya que canviï amb el temps.", "Parlem d’aquesta opció"]
       ]
     },
     es: {
@@ -44,6 +50,12 @@
         ["02 · Información", "Carta digital", "Un acercamiento abre la carta, los servicios o una landing actualizada sin QR ni búsquedas.", "Carta digital"],
         ["03 · Conexión", "Wi‑Fi fácil", "Comparte el acceso a la red con menos fricción y una experiencia más cuidada para el cliente.", "Wi‑Fi del negocio"],
         ["04 · Conversión", "Promociones", "Cambia el destino cuando quieras: cupón, reserva, fidelización, redes o cualquier campaña.", "Campaña activa"]
+      ],
+      details: [
+        ["01 / Ejemplo configurable", "Reseñas de Google", "El cliente toca la tarjeta y llega directamente al formulario de valoración del negocio, sin buscarlo.", "Hablemos de esta opción"],
+        ["02 / Ejemplo configurable", "Carta digital", "La carta se abre en el móvil y puede actualizarse sin reimprimir nada ni cambiar la tarjeta.", "Hablemos de esta opción"],
+        ["03 / Ejemplo configurable", "Wi‑Fi fácil", "Un toque comparte el acceso a la red y deja al equipo libre para atender al cliente.", "Hablemos de esta opción"],
+        ["04 / Ejemplo configurable", "Promoción activa", "El mismo soporte puede llevar a un cupón, una reserva o una campaña que cambie con el tiempo.", "Hablemos de esta opción"]
       ]
     },
     en: {
@@ -67,12 +79,19 @@
         ["02 · Information", "Digital menu", "One tap opens the menu, services or an updated landing page without QR codes or searches.", "Digital menu"],
         ["03 · Connection", "Easy Wi‑Fi", "Share network access with less friction and a more considered customer experience.", "Business Wi-Fi"],
         ["04 · Conversion", "Promotions", "Change the destination whenever you want: coupon, booking, loyalty, social or any campaign.", "Active campaign"]
+      ],
+      details: [
+        ["01 / Configurable example", "Google reviews", "The client taps the card and goes straight to the business review form, without searching for it.", "Discuss this option"],
+        ["02 / Configurable example", "Digital menu", "The menu opens on the phone and can be updated without reprinting anything or changing the card.", "Discuss this option"],
+        ["03 / Configurable example", "Easy Wi‑Fi", "One tap shares network access and leaves the team free to look after the customer.", "Discuss this option"],
+        ["04 / Configurable example", "Active promotion", "The same support can lead to a coupon, a booking or a campaign that changes over time.", "Discuss this option"]
       ]
     }
   };
 
   var languageMap = { CA: "ca", ES: "es", EN: "en" };
   var currentLanguage = "en";
+  var activeCardIndex = null;
 
   function getActiveLanguage() {
     var activeButton = Array.from(document.querySelectorAll("button[aria-pressed=\"true\"]")).find(function (button) {
@@ -84,6 +103,18 @@
   function setText(selector, value) {
     var element = document.querySelector(selector);
     if (element) element.textContent = value;
+  }
+
+  function renderDetail(selected, index) {
+    var panel = document.getElementById("nfc-detail");
+    if (!panel || index === null || !selected.details[index]) return;
+    var detail = selected.details[index];
+    setText(".trama-nfc-detail-kicker", detail[0]);
+    setText("#nfc-detail-title", detail[1]);
+    setText("#nfc-detail-copy", detail[2]);
+    setText("#nfc-detail-cta", detail[3]);
+    panel.classList.add("is-visible");
+    panel.setAttribute("aria-hidden", "false");
   }
 
   function applyLanguage(language) {
@@ -124,6 +155,7 @@
       if (description) description.textContent = data[2];
       card.setAttribute("data-nfc-label", data[3]);
     });
+    if (activeCardIndex !== null) renderDetail(selected, activeCardIndex);
   }
 
   function bindCards() {
@@ -132,8 +164,10 @@
       card.dataset.nfcBound = "true";
       card.addEventListener("click", function () {
         var selected = copy[currentLanguage] || copy.en;
+        activeCardIndex = Array.from(document.querySelectorAll(".trama-nfc-card")).indexOf(card);
         var note = document.getElementById("nfc-note");
         if (note) note.textContent = selected.example + card.getAttribute("data-nfc-label") + selected.suffix;
+        renderDetail(selected, activeCardIndex);
       });
     });
   }
