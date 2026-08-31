@@ -95,5 +95,62 @@ Error generating stack: `+l.message+`
 </script>
 
     <div id="root"></div>
+<style>
+  #serveis-nfc{background:#080a10;color:#f5f4ee;padding:clamp(5rem,10vw,9rem) clamp(1.25rem,5vw,5rem);position:relative;overflow:hidden;font-family:Manrope,system-ui,sans-serif}
+  #serveis-nfc:before{content:"";position:absolute;inset:0;opacity:.28;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(to bottom,transparent,#000 15%,#000 85%,transparent)}
+  .trama-nfc-wrap{max-width:1240px;margin:0 auto;position:relative;z-index:1}
+  .trama-nfc-kicker{color:#bbff35;font:500 .72rem/1 IBM Plex Mono,monospace;letter-spacing:.15em;text-transform:uppercase}
+  .trama-nfc-heading{max-width:850px;margin:1.5rem 0 1.2rem;font:400 clamp(3.2rem,8vw,7.8rem)/.86 "DM Serif Display",Georgia,serif;letter-spacing:-.055em}
+  .trama-nfc-heading em{color:#bbff35;font-style:normal}
+  .trama-nfc-intro{max-width:590px;color:#aeb2bd;font-size:1.05rem;line-height:1.7}
+  .trama-nfc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;margin-top:4rem}
+  .trama-nfc-card{min-height:300px;border:1px solid #ffffff1f;background:linear-gradient(145deg,#151823,#0d0f16);padding:1.35rem;display:flex;flex-direction:column;justify-content:space-between;transition:transform .22s ease,border-color .22s ease,background .22s ease;cursor:pointer}
+  .trama-nfc-card:hover,.trama-nfc-card:focus-visible{transform:translateY(-10px) rotate(-1deg);border-color:#bbff35;background:linear-gradient(145deg,#1d2230,#10151c);outline:none}
+  .trama-nfc-symbol{height:110px;display:grid;place-items:center;position:relative}
+  .trama-nfc-symbol:before,.trama-nfc-symbol:after{content:"";position:absolute;border:1px solid #bbff3570;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;transform:rotate(45deg)}
+  .trama-nfc-symbol:before{width:74px;height:74px}.trama-nfc-symbol:after{width:48px;height:48px}
+  .trama-nfc-chip{width:38px;height:38px;border:1px solid #bbff35;background:#bbff35;color:#080a10;display:grid;place-items:center;font:700 .72rem/1 IBM Plex Mono,monospace;transform:rotate(45deg);box-shadow:0 0 32px #bbff3560}
+  .trama-nfc-chip span{transform:rotate(-45deg)}
+  .trama-nfc-type{color:#7e8490;font:500 .68rem/1 IBM Plex Mono,monospace;letter-spacing:.08em;text-transform:uppercase}
+  .trama-nfc-card h3{font:400 1.75rem/.95 "DM Serif Display",Georgia,serif;margin:.65rem 0;color:#fff}
+  .trama-nfc-card p{color:#aeb2bd;font-size:.82rem;line-height:1.55;margin:0}
+  .trama-nfc-bottom{border-top:1px solid #ffffff1f;margin-top:4rem;padding-top:1.2rem;display:flex;justify-content:space-between;gap:1rem;align-items:center;color:#aeb2bd;font-size:.8rem}
+  .trama-nfc-note{color:#bbff35;font-family:"IBM Plex Mono",monospace;font-size:.75rem;text-align:right}
+  .trama-nfc-product{margin:2.8rem 0 3.8rem;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:2rem;align-items:center}
+  .trama-nfc-product figure{margin:0;max-width:260px;justify-self:center;transform:rotate(-3deg);filter:drop-shadow(18px 22px 22px #0008)}
+  .trama-nfc-product img{display:block;width:100%;height:auto;border:1px solid #ffffff33}
+  .trama-nfc-product figcaption{margin-top:.8rem;color:#7e8490;font:500 .68rem/1.4 "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase}
+  .trama-nfc-product-copy{border-left:1px solid #bbff35;padding-left:1.5rem}
+  .trama-nfc-product-copy p{max-width:36rem;color:#aeb2bd;font-size:1.02rem;line-height:1.6;margin:.75rem 0 0}
+  @media(max-width:900px){.trama-nfc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:560px){#serveis-nfc{padding:4.5rem 1.25rem}.trama-nfc-heading{font-size:clamp(3.1rem,16vw,5.6rem)}.trama-nfc-product{grid-template-columns:1fr;margin:2.4rem 0 3rem}.trama-nfc-product figure{max-width:220px}.trama-nfc-product-copy{border-left:0;border-top:1px solid #bbff35;padding:1rem 0 0}.trama-nfc-grid{grid-template-columns:1fr;margin-top:2.5rem}.trama-nfc-card{min-height:260px}.trama-nfc-bottom{align-items:flex-start;flex-direction:column}.trama-nfc-note{text-align:left}}
+</style>
+<section id="serveis-nfc" aria-labelledby="serveis-nfc-title">
+  <div class="trama-nfc-wrap">
+    <p class="trama-nfc-kicker">07 / Serveis connectats</p>
+    <h2 id="serveis-nfc-title" class="trama-nfc-heading">Un gest. <em>Més accions.</em></h2>
+    <p class="trama-nfc-intro">Targetes i plaques NFC pensades perquè un negoci converteixi una visita en una acció: demanar una review de Google, obrir la carta, connectar-se al Wi-Fi o activar una campanya. Una mateixa peça, configurada per al que necessites.</p>
+    <div class="trama-nfc-product">
+      <figure><img src="assets/nfc-google-review-card-hq.png" alt="Targeta NFC per obrir les ressenyes de Google" loading="lazy"><figcaption>Exemple real · reviews de Google</figcaption></figure>
+      <div class="trama-nfc-product-copy"><span class="trama-nfc-type">Objecte físic · destí digital</span><p>Una peça senzilla a la taula pot convertir una experiència en una ressenya, una reserva o una visita que continua al mòbil.</p></div>
+    </div>
+    <div class="trama-nfc-grid">
+      <button class="trama-nfc-card" type="button" data-nfc-label="Google reviews" aria-describedby="nfc-note">
+        <div class="trama-nfc-symbol" aria-hidden="true"><div class="trama-nfc-chip"><span>★</span></div></div><div><span class="trama-nfc-type">01 · Reputació</span><h3>Reviews de Google</h3><p>Porta el client directament al formulari de valoració quan encara té l’experiència present.</p></div>
+      </button>
+      <button class="trama-nfc-card" type="button" data-nfc-label="Carta digital" aria-describedby="nfc-note">
+        <div class="trama-nfc-symbol" aria-hidden="true"><div class="trama-nfc-chip"><span>↗</span></div></div><div><span class="trama-nfc-type">02 · Informació</span><h3>Carta digital</h3><p>Una aproximació obre la carta, els serveis o una landing actualitzada sense QR ni cerques.</p></div>
+      </button>
+      <button class="trama-nfc-card" type="button" data-nfc-label="Wi-Fi del negoci" aria-describedby="nfc-note">
+        <div class="trama-nfc-symbol" aria-hidden="true"><div class="trama-nfc-chip"><span>∿</span></div></div><div><span class="trama-nfc-type">03 · Connexió</span><h3>Wi-Fi fàcil</h3><p>Comparteix l’accés a la xarxa amb menys fricció i una experiència més cuidada per al client.</p></div>
+      </button>
+      <button class="trama-nfc-card" type="button" data-nfc-label="Campanya activa" aria-describedby="nfc-note">
+        <div class="trama-nfc-symbol" aria-hidden="true"><div class="trama-nfc-chip"><span>+</span></div></div><div><span class="trama-nfc-type">04 · Conversió</span><h3>Promocions</h3><p>Canvia el destí quan vulguis: cupó, reserva, fidelització, xarxes o qualsevol campanya.</p></div>
+      </button>
+    </div>
+    <div class="trama-nfc-bottom"><span>Un sistema físic amb un destí digital editable.</span><span id="nfc-note" class="trama-nfc-note" aria-live="polite">Selecciona una targeta per veure un exemple →</span></div>
+  </div>
+</section>
+<script src="nfc-section.js" defer></script>
   </body>
 </html>
