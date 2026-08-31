@@ -9,6 +9,8 @@
       topLabel: "Apropa · activa · continua",
       bottomLabel: "Una peça / molts destins",
       alt: "Targeta NFC per obrir les ressenyes de Google",
+      standAlt: "Suport de taula NFC per obrir les ressenyes de Google",
+      standCaption: "Suport de taula · reviews",
       type: "Objecte físic · destí digital",
       product: "Una peça senzilla a la taula pot convertir una experiència en una ressenya, una reserva o una visita que continua al mòbil.",
       signal: ["01", "TOCA", "DESTÍ EDITABLE"],
@@ -38,6 +40,8 @@
       topLabel: "Acerca · activa · continúa",
       bottomLabel: "Una pieza / muchos destinos",
       alt: "Tarjeta NFC para abrir las reseñas de Google",
+      standAlt: "Soporte de mesa NFC para abrir las reseñas de Google",
+      standCaption: "Soporte de mesa · reseñas",
       type: "Objeto físico · destino digital",
       product: "Una pieza sencilla en la mesa puede convertir una experiencia en una reseña, una reserva o una visita que continúa en el móvil.",
       signal: ["01", "TOCA", "DESTINO EDITABLE"],
@@ -67,6 +71,8 @@
       topLabel: "Tap · activate · continue",
       bottomLabel: "One piece / many destinations",
       alt: "NFC card to open Google reviews",
+      standAlt: "NFC table stand to open Google reviews",
+      standCaption: "Table stand · reviews",
       type: "Physical object · digital destination",
       product: "A simple piece on the table can turn an experience into a review, a booking or a visit that continues on the phone.",
       signal: ["01", "TAP", "EDITABLE DESTINATION"],
@@ -134,8 +140,11 @@
     setText(".trama-nfc-product figcaption", selected.caption);
     setText(".trama-nfc-stage-label--top", selected.topLabel);
     setText(".trama-nfc-stage-label--bottom", selected.bottomLabel);
-    var productImage = section.querySelector(".trama-nfc-product img");
+    var productImage = section.querySelector(".trama-nfc-card-photo img");
     if (productImage) productImage.setAttribute("alt", selected.alt);
+    var standImage = section.querySelector(".trama-nfc-stand img");
+    if (standImage) standImage.setAttribute("alt", selected.standAlt);
+    setText(".trama-nfc-stand figcaption", selected.standCaption);
     setText(".trama-nfc-product-copy .trama-nfc-type", selected.type);
     setText(".trama-nfc-product-copy p", selected.product);
     setText(".trama-nfc-signal span:nth-child(1)", selected.signal[0]);
