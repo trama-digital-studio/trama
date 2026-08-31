@@ -75,8 +75,10 @@
   var currentLanguage = "en";
 
   function getActiveLanguage() {
-    var activeButton = document.querySelector('button[aria-pressed="true"]');
-    return activeButton ? languageMap[activeButton.textContent.trim()] || null : null;
+    var activeButton = Array.from(document.querySelectorAll("button[aria-pressed=\"true\"]")).find(function (button) {
+      return languageMap[button.textContent.trim()];
+    });
+    return activeButton ? languageMap[activeButton.textContent.trim()] : null;
   }
 
   function setText(selector, value) {
@@ -155,6 +157,11 @@
     applyLanguage(currentLanguage);
     bindCards();
     bindLanguageButtons();
+    document.addEventListener("click", function (event) {
+      var button = event.target.closest && event.target.closest("button");
+      var language = button && languageMap[button.textContent.trim()];
+      if (language) window.setTimeout(function () { applyLanguage(getActiveLanguage() || language); }, 0);
+    }, true);
     new MutationObserver(function () {
       bindCards();
       bindLanguageButtons();
