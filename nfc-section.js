@@ -13,6 +13,8 @@
       standCaption: "Suport de taula · reviews",
       menuAlt: "Targeta NFC de menú vista per davant i per darrere",
       menuCaption: "Targeta de menú · davant / darrere",
+      woodAlt: "Exemple de targetes de fusta personalitzables",
+      woodCaption: "Opció de fusta · personalització",
       type: "Objecte físic · destí digital",
       product: "Una peça senzilla a la taula pot convertir una experiència en una ressenya, una reserva o una visita que continua al mòbil.",
       signal: ["01", "TOCA", "DESTÍ EDITABLE"],
@@ -47,6 +49,8 @@
       standCaption: "Soporte de mesa · reseñas",
       menuAlt: "Tarjeta NFC de menú vista por delante y por detrás",
       menuCaption: "Tarjeta de menú · delante / detrás",
+      woodAlt: "Ejemplo de tarjetas de madera personalizables",
+      woodCaption: "Opción de madera · personalización",
       type: "Objeto físico · destino digital",
       product: "Una pieza sencilla en la mesa puede convertir una experiencia en una reseña, una reserva o una visita que continúa en el móvil.",
       signal: ["01", "TOCA", "DESTINO EDITABLE"],
@@ -81,6 +85,8 @@
       standCaption: "Table stand · reviews",
       menuAlt: "NFC menu card shown front and back",
       menuCaption: "Menu card · front / back",
+      woodAlt: "Example of customisable wooden cards",
+      woodCaption: "Wood option · customisation",
       type: "Physical object · digital destination",
       product: "A simple piece on the table can turn an experience into a review, a booking or a visit that continues on the phone.",
       signal: ["01", "TAP", "EDITABLE DESTINATION"],
@@ -157,6 +163,9 @@
     var menuImage = section.querySelector(".trama-nfc-menu img");
     if (menuImage) menuImage.setAttribute("alt", selected.menuAlt);
     setText(".trama-nfc-menu figcaption", selected.menuCaption);
+    var woodImage = section.querySelector(".trama-nfc-wood img");
+    if (woodImage) woodImage.setAttribute("alt", selected.woodAlt);
+    setText(".trama-nfc-wood figcaption", selected.woodCaption);
     setText(".trama-nfc-product-copy .trama-nfc-type", selected.type);
     setText(".trama-nfc-product-copy p", selected.product);
     setText(".trama-nfc-signal span:nth-child(1)", selected.signal[0]);
