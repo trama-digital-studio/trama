@@ -11,6 +11,8 @@
       alt: "Targeta NFC per obrir les ressenyes de Google",
       standAlt: "Suport de taula NFC per obrir les ressenyes de Google",
       standCaption: "Suport de taula · reviews",
+      menuAlt: "Targeta NFC de menú vista per davant i per darrere",
+      menuCaption: "Targeta de menú · davant / darrere",
       type: "Objecte físic · destí digital",
       product: "Una peça senzilla a la taula pot convertir una experiència en una ressenya, una reserva o una visita que continua al mòbil.",
       signal: ["01", "TOCA", "DESTÍ EDITABLE"],
@@ -42,6 +44,8 @@
       alt: "Tarjeta NFC para abrir las reseñas de Google",
       standAlt: "Soporte de mesa NFC para abrir las reseñas de Google",
       standCaption: "Soporte de mesa · reseñas",
+      menuAlt: "Tarjeta NFC de menú vista por delante y por detrás",
+      menuCaption: "Tarjeta de menú · delante / detrás",
       type: "Objeto físico · destino digital",
       product: "Una pieza sencilla en la mesa puede convertir una experiencia en una reseña, una reserva o una visita que continúa en el móvil.",
       signal: ["01", "TOCA", "DESTINO EDITABLE"],
@@ -73,6 +77,8 @@
       alt: "NFC card to open Google reviews",
       standAlt: "NFC table stand to open Google reviews",
       standCaption: "Table stand · reviews",
+      menuAlt: "NFC menu card shown front and back",
+      menuCaption: "Menu card · front / back",
       type: "Physical object · digital destination",
       product: "A simple piece on the table can turn an experience into a review, a booking or a visit that continues on the phone.",
       signal: ["01", "TAP", "EDITABLE DESTINATION"],
@@ -145,6 +151,9 @@
     var standImage = section.querySelector(".trama-nfc-stand img");
     if (standImage) standImage.setAttribute("alt", selected.standAlt);
     setText(".trama-nfc-stand figcaption", selected.standCaption);
+    var menuImage = section.querySelector(".trama-nfc-menu img");
+    if (menuImage) menuImage.setAttribute("alt", selected.menuAlt);
+    setText(".trama-nfc-menu figcaption", selected.menuCaption);
     setText(".trama-nfc-product-copy .trama-nfc-type", selected.type);
     setText(".trama-nfc-product-copy p", selected.product);
     setText(".trama-nfc-signal span:nth-child(1)", selected.signal[0]);
