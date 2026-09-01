@@ -31,7 +31,8 @@
         ["02 / Exemple configurable", "Carta digital", "La carta s’obre al mòbil i es pot actualitzar sense reimprimir res ni canviar la targeta.", "Parlem d’aquesta opció"],
         ["03 / Exemple configurable", "Wi-Fi fàcil", "Un toc comparteix l’accés a la xarxa i deixa l’equip lliure per atendre el client.", "Parlem d’aquesta opció"],
         ["04 / Exemple configurable", "Promoció activa", "El mateix suport pot portar a un cupó, una reserva o una campanya que canviï amb el temps.", "Parlem d’aquesta opció"]
-      ]
+      ],
+      survey: { kicker: "08 / Comencem el projecte", title: "Configurem les teves targetes.", intro: "Explica’ns què necessites i prepararem una proposta de targetes NFC adaptada al teu negoci.", timing: "Enquesta ràpida · 2 min", business: "Nom del negoci", businessPlaceholder: "Restaurant, botiga...", name: "Nom de contacte", namePlaceholder: "El teu nom", contact: "Correu o telèfon", contactPlaceholder: "tu@negoci.com", quantity: "Quantitat de targetes", quantityPlaceholder: "Selecciona una quantitat", quantities: ["1–10", "11–25", "26–50", "51–100", "Més de 100"], message: "Com les vols?", messagePlaceholder: "Per a reviews, carta digital, Wi‑Fi, promocions... Explica’ns el format i l’ús que tens al cap.", note: "Resposta directa al correu de TRAMA · sense compromís", submit: "Enviar la proposta →", sent: "S’obrirà el teu correu amb la proposta preparada." }
     },
     es: {
       kicker: "07 / Servicios conectados",
@@ -64,7 +65,8 @@
         ["02 / Ejemplo configurable", "Carta digital", "La carta se abre en el móvil y puede actualizarse sin reimprimir nada ni cambiar la tarjeta.", "Hablemos de esta opción"],
         ["03 / Ejemplo configurable", "Wi‑Fi fácil", "Un toque comparte el acceso a la red y deja al equipo libre para atender al cliente.", "Hablemos de esta opción"],
         ["04 / Ejemplo configurable", "Promoción activa", "El mismo soporte puede llevar a un cupón, una reserva o una campaña que cambie con el tiempo.", "Hablemos de esta opción"]
-      ]
+      ],
+      survey: { kicker: "08 / Empezamos el proyecto", title: "Configuremos tus tarjetas.", intro: "Cuéntanos qué necesitas y prepararemos una propuesta de tarjetas NFC adaptada a tu negocio.", timing: "Encuesta rápida · 2 min", business: "Nombre del negocio", businessPlaceholder: "Restaurante, tienda...", name: "Nombre de contacto", namePlaceholder: "Tu nombre", contact: "Correo o teléfono", contactPlaceholder: "tu@negocio.com", quantity: "Cantidad de tarjetas", quantityPlaceholder: "Selecciona una cantidad", quantities: ["1–10", "11–25", "26–50", "51–100", "Más de 100"], message: "¿Cómo las quieres?", messagePlaceholder: "Para reseñas, carta digital, Wi‑Fi, promociones... Cuéntanos el formato y el uso que tienes en mente.", note: "Respuesta directa al correo de TRAMA · sin compromiso", submit: "Enviar la propuesta →", sent: "Se abrirá tu correo con la propuesta preparada." }
     },
     en: {
       kicker: "07 / Connected services",
@@ -97,7 +99,8 @@
         ["02 / Configurable example", "Digital menu", "The menu opens on the phone and can be updated without reprinting anything or changing the card.", "Discuss this option"],
         ["03 / Configurable example", "Easy Wi‑Fi", "One tap shares network access and leaves the team free to look after the customer.", "Discuss this option"],
         ["04 / Configurable example", "Active promotion", "The same support can lead to a coupon, a booking or a campaign that changes over time.", "Discuss this option"]
-      ]
+      ],
+      survey: { kicker: "08 / Start the project", title: "Let’s configure your cards.", intro: "Tell us what you need and we’ll prepare an NFC card proposal adapted to your business.", timing: "Quick survey · 2 min", business: "Business name", businessPlaceholder: "Restaurant, shop...", name: "Contact name", namePlaceholder: "Your name", contact: "Email or phone", contactPlaceholder: "you@business.com", quantity: "Number of cards", quantityPlaceholder: "Select a quantity", quantities: ["1–10", "11–25", "26–50", "51–100", "More than 100"], message: "How would you like them?", messagePlaceholder: "For reviews, a digital menu, Wi‑Fi, promotions... Tell us the format and use you have in mind.", note: "Direct reply to TRAMA · no commitment", submit: "Send the proposal →", sent: "Your email app will open with the proposal prepared." }
     }
   };
 
@@ -174,6 +177,42 @@
       card.setAttribute("data-nfc-label", data[3]);
     });
     if (activeCardIndex !== null) renderDetail(selected, activeCardIndex);
+    var survey = selected.survey;
+    if (survey) {
+      setText(".trama-nfc-survey-kicker", survey.kicker);
+      setText(".trama-nfc-survey h3", survey.title);
+      setText(".trama-nfc-survey-intro", survey.intro);
+      setText(".trama-nfc-survey-head .trama-nfc-type", survey.timing);
+      var labels = section.querySelectorAll(".trama-nfc-field label");
+      if (labels[0]) labels[0].textContent = survey.business;
+      if (labels[1]) labels[1].textContent = survey.name;
+      if (labels[2]) labels[2].textContent = survey.contact;
+      if (labels[3]) labels[3].textContent = survey.quantity;
+      if (labels[4]) labels[4].textContent = survey.message;
+      var business = document.getElementById("nfc-business"), name = document.getElementById("nfc-name"), contact = document.getElementById("nfc-email"), quantity = document.getElementById("nfc-quantity"), message = document.getElementById("nfc-message");
+      if (business) business.placeholder = survey.businessPlaceholder;
+      if (name) name.placeholder = survey.namePlaceholder;
+      if (contact) contact.placeholder = survey.contactPlaceholder;
+      if (message) message.placeholder = survey.messagePlaceholder;
+      if (quantity) { var current = quantity.value; quantity.innerHTML = "<option value=\"\">" + survey.quantityPlaceholder + "</option>"; survey.quantities.forEach(function (item) { var option = document.createElement("option"); option.textContent = item; quantity.appendChild(option); }); if (current) quantity.value = current; }
+      setText(".trama-nfc-form-note", survey.note);
+      setText(".trama-nfc-submit", survey.submit);
+    }
+  }
+
+  function bindSurvey() {
+    var form = document.getElementById("nfc-survey-form");
+    if (!form || form.dataset.nfcSurveyBound) return;
+    form.dataset.nfcSurveyBound = "true";
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var selected = copy[currentLanguage] || copy.en;
+      var data = new FormData(form);
+      var subject = "Enquesta targetes NFC — " + data.get("business");
+      var body = ["Negoci: " + data.get("business"), "Contacte: " + data.get("name"), "Correu o telèfon: " + data.get("contact"), "Quantitat: " + data.get("quantity"), "Com les volen: " + data.get("message")].join("\n");
+      window.location.href = "mailto:paubacarditanda3@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      setText("#nfc-survey-status", selected.survey.sent);
+    });
   }
 
   function bindCards() {
@@ -208,6 +247,7 @@
     currentLanguage = getActiveLanguage() || currentLanguage;
     applyLanguage(currentLanguage);
     bindCards();
+    bindSurvey();
     bindLanguageButtons();
     document.addEventListener("click", function (event) {
       var button = event.target.closest && event.target.closest("button");
@@ -216,6 +256,7 @@
     }, true);
     new MutationObserver(function () {
       bindCards();
+      bindSurvey();
       bindLanguageButtons();
       var activeLanguage = getActiveLanguage();
       if (activeLanguage && activeLanguage !== currentLanguage) applyLanguage(activeLanguage);
